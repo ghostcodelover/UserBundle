@@ -1,0 +1,5 @@
+parameters:
+    znd_usm_user.profile.entity:         "ZND\USM\\UserBundle\\Entity\\Profile"
+    znd_usm_user.group.entity:           "ZND\USM\\UserBundle\\Entity\\UserGroup"
+    znd_usm_user.options.entity:         "ZND\USM\\UserBundle\\Entity\\UserOptions"
+    znd_usm_user.following.entity:       "ZND\USM\\UserBundle\\Entity\\Following"

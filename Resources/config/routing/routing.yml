@@ -1,0 +1,13 @@
+_events_user:
+    resource: "@EventsUserBundle/Controller/UserController.php"
+    type:  rest
+    prefix: /apis
+    options:
+       exposed: true
+
+_events_profile:
+    resource: "@EventsUserBundle/Controller/ProfileController.php"
+    type:  rest
+    prefix: /apis
+    options:
+       exposed: true
