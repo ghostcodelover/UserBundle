@@ -18,7 +18,7 @@ use JMS\DiExtraBundle\Annotation as DI;
  * Class updating the canonical fields of the user.
  *
  * @author mukendi emmanuel
- * @DI\Service("znd_usm_user.user_util_canonical_fields_updater", public= false)
+ * @DI\Service("znd_user.user_util_canonical_fields_updater", public= false)
  */
 class CanonicalFieldsUpdater
 {
@@ -33,7 +33,7 @@ class CanonicalFieldsUpdater
      * @param CanonicalizerInterface $canonicalizer
      *
      * @DI\InjectParams({
-     *      "canonicalizer" = @DI\Inject("znd_usm_user.user_util_canonicalizer")
+     *      "canonicalizer" = @DI\Inject("znd_user.user_util_canonicalizer")
      *     })
      */
     public function __construct(CanonicalizerInterface $canonicalizer)

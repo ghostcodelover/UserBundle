@@ -17,7 +17,7 @@ use ZND\USM\UserBundle\Entity\ProfileInterface;
 use JMS\DiExtraBundle\Annotation as DI;
 
 /**
- * @DI\Service("znd_usm_user.profile_entity_manager")
+ * @DI\Service("znd_user.profile_entity_manager")
  */
 class ProfileEntityManager extends ApiEntityManager  implements ProfileEntityManagerInterface
 {
@@ -26,7 +26,7 @@ class ProfileEntityManager extends ApiEntityManager  implements ProfileEntityMan
      * ProfileEntityManager constructor.
      * @DI\InjectParams({
      *     "om"    = @DI\Inject("events_api.api_object_manager"),
-     *     "class"  = @DI\Inject("%znd_usm_user.profile_entity_class%")
+     *     "class"  = @DI\Inject("%znd_user.profile_entity_class%")
      * })
      *
      * @param \ZND\SIM\ApiBundle\Persistence\ApiObjectManagerInterface $om

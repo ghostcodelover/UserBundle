@@ -16,7 +16,7 @@ use JMS\DiExtraBundle\Annotation as DI;
  * Class Canonicalizer
  *
  * @package ZND\USM\UserBundle\Util
- * @DI\Service("znd_usm_user.user_util_canonicalizer", public=true)
+ * @DI\Service("znd_user.user_util_canonicalizer", public=true)
  */
 class Canonicalizer implements CanonicalizerInterface
 {

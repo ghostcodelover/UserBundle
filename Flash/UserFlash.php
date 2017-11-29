@@ -12,7 +12,7 @@ use Symfony\Component\Translation\TranslatorInterface;
  * Class UserFlashInfo
  *
  * @package ZND\USM\UserBundle\FlashInfo
- * @DI\Service("znd_usm_user.user_flash")
+ * @DI\Service("znd_user.user_flash")
  */
 class UserFlash extends ApiFlash  implements FlashInterface
 {

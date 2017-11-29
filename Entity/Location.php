@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="UserBundle\Repository\LocationRepository")
- * @ORM\Table(name="znd_usm_user._location")
+ * @ORM\Table(name="znd_user._location")
  */
 class Location implements LocationInterface
 {

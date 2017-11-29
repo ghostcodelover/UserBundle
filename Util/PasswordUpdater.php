@@ -20,7 +20,7 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
  * Class updating the hashed password in the user when there is a new password.
  *
  * @author mukendi emmanuel <mukendiemmanuel15@gmail.com>
- * @DI\Service("znd_usm_user.user_util_password_updater", public=false)
+ * @DI\Service("znd_user.user_util_password_updater", public=false)
  */
 class PasswordUpdater implements PasswordUpdaterInterface
 {

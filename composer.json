@@ -1,9 +1,9 @@
 {
     "name": "ghostcodelover/user-bundle",
     "type": "symfony-bundle",
-    "description": "Symfony ZanduUserBundle",
+    "description": "Symfony ZNDUserBundle",
     "keywords": ["User management"],
-    "homepage": "http://zandu.github.com",
+    "homepage": "http://zandu.cd",
     "license": "MIT",
     "authors": [
         {

@@ -1,13 +1,13 @@
 <?php
-namespace UserBundle\Controller;
+namespace ZND\USM\UserBundle\Controller;
 
 use ZND\SIM\ApiBundle\Controller\ApiController;
-use UserBundle\Entity\LocationInterface;
-use UserBundle\Entity\SourceInterface;
-use UserBundle\EntityManager\LocationManagerInterface;
-use UserBundle\EntityManager\SourceManagerInterface;
+use ZND\USM\UserBundle\Entity\LocationInterface;
+use ZND\USM\UserBundle\Entity\SourceInterface;
+use ZND\USM\UserBundle\EntityManager\LocationManagerInterface;
+use ZND\USM\UserBundle\EntityManager\SourceManagerInterface;
 use UserBundle\Event\LocationEvent;
-use UserBundle\Form\Factory\LocationFormFactoryInterface;
+use ZND\USM\UserBundle\Form\Factory\LocationFormFactoryInterface;
 use ZND\USM\UserBundle\Entity\UserInterface;
 use FOS\RestBundle\Controller\Annotations as Route;
 use JMS\DiExtraBundle\Annotation as DI;

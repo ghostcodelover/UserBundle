@@ -12,7 +12,7 @@ use Symfony\Component\Form\FormInterface;
  * Class UserFormFactory
  *
  * @package ZND\USM\OauthBundle\Form\Factory
- * @DI\Service("znd_usm_user.user_form_factory")
+ * @DI\Service("znd_user.user_form_factory")
  */
 class UserFormFactory extends ApiFormFactory  implements UserFormFactoryInterface
 {

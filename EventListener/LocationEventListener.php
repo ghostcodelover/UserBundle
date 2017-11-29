@@ -13,10 +13,10 @@ namespace UserBundle\EventListener;
 
 
 use ZND\SIM\ApiBundle\EventListener\ApiEventListener;
-use UserBundle\Entity\LocationInterface;
-use UserBundle\EntityManager\LocationManagerInterface;
+use ZND\USM\UserBundle\Entity\LocationInterface;
+use ZND\USM\UserBundle\EntityManager\LocationManagerInterface;
 use UserBundle\Event\LocationEvent;
-use UserBundle\Util\LocationIdGeneratorInterface;
+use ZND\USM\UserBundle\Util\LocationIdGeneratorInterface;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\HttpFoundation\Response;
 

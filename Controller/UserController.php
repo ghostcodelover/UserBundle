@@ -29,13 +29,13 @@ use Symfony\Component\HttpFoundation\Response;
 class UserController extends ApiController
 {
     /**
-    *@DI\Inject("znd_usm_user.user_flash")
+    *@DI\Inject("znd_user.user_flash")
      * @var FlashInterface;
     */
     protected $flash;
     /**
      * @var UserFormFactoryInterface
-     * @DI\Inject("znd_usm_user.user_form_factory")
+     * @DI\Inject("znd_user.user_form_factory")
      */
     private  $userFormFactory;
 
@@ -87,7 +87,7 @@ class UserController extends ApiController
         $form = $this->userFormFactory->createUser();
         $user= $this->userManager->createUser();
         $event = new UserEvent($user, $form, $request);
-        $this->dispatcher->dispatch('znd_usm_user.onUserNew', $event);
+        $this->dispatcher->dispatch('znd_user.onUserNew', $event);
         if ($event->getStatus()==Response::HTTP_OK){
             return $this->handleView($this->view($form->getData(), Response::HTTP_OK));
         }
@@ -106,13 +106,13 @@ class UserController extends ApiController
         $form = $this->userFormFactory->createUser();
         $user= $this->userManager->createUser();
         $event = new UserEvent($user, $form, $request);
-        $this->dispatcher->dispatch('znd_usm_user.onUserNew', $event);
-        $this->dispatcher->dispatch('znd_usm_user.onUserPost', $event);
+        $this->dispatcher->dispatch('znd_user.onUserNew', $event);
+        $this->dispatcher->dispatch('znd_user.onUserPost', $event);
         if ($form->isValid()){
-            $this->dispatcher->dispatch('znd_usm_user.onUserPostSuccess', $event);
+            $this->dispatcher->dispatch('znd_user.onUserPostSuccess', $event);
             if (is_string($user->getConfirmationCode())){
                 $this->userManager->updateUser($user);
-                $this->dispatcher->dispatch('znd_usm_user.onUserPosted', $event);
+                $this->dispatcher->dispatch('znd_user.onUserPosted', $event);
                 return $this->handleView($this->view(array('email'=>$user->getEmail()),Response::HTTP_CREATED));
             }
         }
@@ -137,7 +137,7 @@ class UserController extends ApiController
             if(!empty($user->getConfirmationCode())){
                 if(!$user->isIsMailChecked()){
                     $event= new UserEvent($user,null,$request);
-                    $this->dispatcher->dispatch("znd_usm_user.onUserCheck", $event);
+                    $this->dispatcher->dispatch("znd_user.onUserCheck", $event);
                     $this->userManager->updateUser($user);
                 }
                 $message= $this->flash->getMessage('check','success',['email'=>$email]);
@@ -164,8 +164,8 @@ class UserController extends ApiController
         }
         $event = new UserEvent($user,null, $request);
         if (!$user->isIsConfirmed()){
-            $this->dispatcher->dispatch("znd_usm_user.onUserConfirm", $event);
-            $this->dispatcher->dispatch("znd_usm_user.onUserConfirmed", $event);
+            $this->dispatcher->dispatch("znd_user.onUserConfirm", $event);
+            $this->dispatcher->dispatch("znd_user.onUserConfirmed", $event);
             $this->userManager->updateUser($user);
             $message = $this->flash->getMessage('confirm','success',["username"=>$user->getUsername()]);
             return $this->handleView($this->view(array("message"=>$message,'error'=>false), Response::HTTP_OK));
@@ -192,7 +192,7 @@ class UserController extends ApiController
          return $this->handleView($this->view($this->flash->getMessage('get', 'error',['username'=>$username]), Response:: HTTP_NOT_FOUND));
        }
        $event = new UserEvent($user,null,$request);
-       $this->dispatcher->dispatch("znd_usm_user.onUserGet",$event);
+       $this->dispatcher->dispatch("znd_user.onUserGet",$event);
        return $this->handleView($this->view($user, Response::HTTP_OK));
     }
 
@@ -215,7 +215,7 @@ class UserController extends ApiController
             return $this->handleView($this->view($this->flash->getMessage('get', 'error',['username'=>$salt]), Response:: HTTP_NOT_FOUND));
         }
         $event = new UserEvent($user,null,$request);
-        $this->dispatcher->dispatch("znd_usm_user.onUserGet",$event);
+        $this->dispatcher->dispatch("znd_user.onUserGet",$event);
         return $this->handleView($this->view($user, Response::HTTP_OK));
     }
 
@@ -258,7 +258,7 @@ class UserController extends ApiController
         $form = $this->userFormFactory->createUser($user);
         $event = new UserEvent($user, $form, $request);
         $form= $event->getForm();
-        $this->dispatcher->dispatch("znd_usm_user.onUserPatch",  $event);
+        $this->dispatcher->dispatch("znd_user.onUserPatch",  $event);
         if(!$event->getStatus()){
             return $this->handleView($this->view($this->flash->getMessage('patch','error'), Response::HTTP_BAD_REQUEST));
         }
@@ -283,7 +283,7 @@ class UserController extends ApiController
         }
         $form = $this->userFormFactory->createUser($user);
         $event = new UserEvent($user,$form, $request);
-        $this->dispatcher->dispatch('znd_usm_user.onUserChange', $event);
+        $this->dispatcher->dispatch('znd_user.onUserChange', $event);
         $code= Response::HTTP_OK;
         if ($event->getStatus()){
             $code= Response::HTTP_INTERNAL_SERVER_ERROR;
@@ -302,7 +302,7 @@ class UserController extends ApiController
     {   $user= $this->userManager->findUserById($request->query->get('username'));
         $form = $this->userFormFactory->createUser($user);
         $event = new UserEvent($user, $form, $request);
-        $this->dispatcher->dispatch('znd_usm_user.onUserNew', $event);
+        $this->dispatcher->dispatch('znd_user.onUserNew', $event);
         if ($event->getStatus()==Response::HTTP_CONTINUE){
             return $this->handleView($this->view($form->all(), Response::HTTP_OK));
         }
@@ -326,9 +326,9 @@ class UserController extends ApiController
         $form = $this->userFormFactory->createUser($user);
 
         $event = new UserEvent($form, $user, $request);
-        $this->dispatcher->dispatch('znd_usm_user.onUserPut',  $event);
+        $this->dispatcher->dispatch('znd_user.onUserPut',  $event);
         if ($form->isValid()) {
-            $this->dispatcher->dispatch('znd_usm_user.onUserPutSuccess', $event);
+            $this->dispatcher->dispatch('znd_user.onUserPutSuccess', $event);
             if ($event->getStatus()===true){
                 $this->userManager->updateUser($user);
                 return $this->getViewHandler()->handle($this->view($user, Response::HTTP_CREATED));
@@ -355,7 +355,7 @@ class UserController extends ApiController
         return $this->getViewHandler()->handle($this->view($this->flash->getMessage('lock','error',['username'=>$username]), Response::HTTP_NETWORK_AUTHENTICATION_REQUIRED));
       }
       $event = new UserEvent($user, $request);
-      $this->dispatcher->dispatch("znd_usm_user.onUserLock", $event);
+      $this->dispatcher->dispatch("znd_user.onUserLock", $event);
       if(!$user->isLocked()){
           return $this->getViewHandler()->handle($this->view($this->flash->getMessage('lock','error',['username'=>$username]), Response::HTTP_BAD_REQUEST));
       }

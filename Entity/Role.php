@@ -20,7 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @package ZND\USM\UserBundle\Entity
  * @author  Mukendi Emmanuel <ghostcodelover@gmail.com>
  * @ORM\Entity()
- * @ORM\Table(name="znd_usm_user._role")
+ * @ORM\Table(name="znd_user._role")
  */
 class Role
 {

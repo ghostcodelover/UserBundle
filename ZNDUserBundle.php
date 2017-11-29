@@ -17,7 +17,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 /**
  * @author Mukendi emmanuel<mukendiemmanuel@events.cd>
  */
-class EventsUserBundle extends Bundle
+class ZNDUserBundle extends Bundle
 {
     /**
      * @param ContainerBuilder $container

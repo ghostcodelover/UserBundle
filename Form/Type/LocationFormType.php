@@ -10,7 +10,7 @@ namespace UserBundle\Form\Type;
 
 
 use ZND\SIM\ApiBundle\Form\Type\ApiFormType;
-use UserBundle\Form\Helper\LocationFormHelper;
+use ZND\USM\UserBundle\Form\Helper\UserFormHelper;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class LocationFormType extends ApiFormType
@@ -33,16 +33,16 @@ class LocationFormType extends ApiFormType
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
         $builder
-            ->add('country', LocationFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\TextType') )
-            ->add('state', LocationFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\TextType') )
-            ->add('town', LocationFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\TextType') )
-            ->add('commune', LocationFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\TextType') )
-            ->add('avenue', LocationFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\TextType') )
-            ->add('street', LocationFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\TextType') )
-            ->add('streetNumber', LocationFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\IntegerType') )
-            ->add('longitude', LocationFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\NumberType') )
-            ->add('latitude', LocationFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\NumberType') )
-            ->add('postal', LocationFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\IntegerType'));
+            ->add('country', UserFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\TextType') )
+            ->add('state', UserFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\TextType') )
+            ->add('town', UserFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\TextType') )
+            ->add('commune', UserFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\TextType') )
+            ->add('avenue', UserFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\TextType') )
+            ->add('street', UserFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\TextType') )
+            ->add('streetNumber', UserFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\IntegerType') )
+            ->add('longitude', UserFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\NumberType') )
+            ->add('latitude', UserFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\NumberType') )
+            ->add('postal', UserFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\IntegerType'));
     }
 
     /**

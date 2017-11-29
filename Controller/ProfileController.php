@@ -12,7 +12,6 @@ namespace ZND\USM\UserBundle\Controller;
 
 
 use ZND\SIM\ApiBundle\Controller\ApiController;
-use ZND\USM\UserBundle\Entity\UserInterface;
 use ZND\USM\UserBundle\Entity\ProfileInterface;
 use ZND\USM\UserBundle\EntityManager\UserEntityManagerInterface;
 use ZND\USM\UserBundle\EntityManager\ProfileEntityManagerInterface;
@@ -34,24 +33,24 @@ class ProfileController extends ApiController
 {
     /**
      *@var ProfileEntityManagerInterface
-     * @DI\Inject("znd_usm_user.profile_entity_manager")
+     * @DI\Inject("znd_user.profile_entity_manager")
      */
     protected $profileManager;
 
     /**
      *@var UserEntityManagerInterface
-     * @DI\Inject("znd_usm_user.user_entity_manager")
+     * @DI\Inject("znd_user.user_entity_manager")
      */
     protected $userEntityManager;
 
     /**
-     *@DI\Inject("znd_usm_user.user_flash")
+     *@DI\Inject("znd_user.user_flash")
      * @var FlashInterface;
      */
     protected $flash;
     /**
      * @var UserFormFactoryInterface
-     * @DI\Inject("znd_usm_user.user_form_factory")
+     * @DI\Inject("znd_user.user_form_factory")
      */
     private  $profileFormFactory;
 
@@ -73,7 +72,7 @@ class ProfileController extends ApiController
             return $this->handleView($this->view($uid, Response:: HTTP_NOT_FOUND));
         }
         $event = new ProfileEvent($profile,null,$request);
-        $this->dispatcher->dispatch("znd_usm_user.onProfileShow",$event);
+        $this->dispatcher->dispatch("znd_user.onProfileShow",$event);
         if ($event->getStatus()!==Response::HTTP_OK){
             return $this->handleView($this->view('no profile found with this id:'.$uid, Response:: HTTP_NOT_FOUND));
         }
@@ -97,7 +96,7 @@ class ProfileController extends ApiController
         $form = $this->profileFormFactory->createProfile($profile);
         $event = new ProfileEvent($profile, $form, $request);
         $form= $event->getForm();
-        $this->dispatcher->dispatch("znd_usm_user.onProfilePatch",  $event);
+        $this->dispatcher->dispatch("znd_user.onProfilePatch",  $event);
         if(!$event->getStatus()){
             return $this->handleView($this->view($this->flash->getMessage('patch','error'), Response::HTTP_BAD_REQUEST));
         }
@@ -116,7 +115,7 @@ class ProfileController extends ApiController
     {   $profile= $this->profileManager->findProfileById($request->query->get('username'));
         $form = $this->profileFormFactory->createProfile($profile);
         $event = new ProfileEvent($profile, $form, $request);
-        $this->dispatcher->dispatch('znd_usm_user.onProfileNew', $event);
+        $this->dispatcher->dispatch('znd_user.onProfileNew', $event);
         if ($form instanceof FormInterface){
             return $this->handleView($this->view($form->createView(), Response::HTTP_OK));
         }
@@ -139,10 +138,10 @@ class ProfileController extends ApiController
         }
         $form = $this->profileFormFactory->createProfile();
         $event = new ProfileEvent($profile,$form, $request);
-        $this->dispatcher->dispatch('znd_usm_user.onProfileEdit',  $event);
-        $this->dispatcher->dispatch('znd_usm_user.onProfilePut',  $event);
+        $this->dispatcher->dispatch('znd_user.onProfileEdit',  $event);
+        $this->dispatcher->dispatch('znd_user.onProfilePut',  $event);
         if ($form->isValid()) {
-            $this->dispatcher->dispatch('znd_usm_user.onProfilePutSuccess', $event);
+            $this->dispatcher->dispatch('znd_user.onProfilePutSuccess', $event);
             $this->profileManager->updateProfile($profile);
             return $this->getViewHandler()->handle($this->view($profile, Response::HTTP_OK));
         }
@@ -166,7 +165,7 @@ class ProfileController extends ApiController
             return $this->getViewHandler()->handle($this->view($this->flash->getMessage('lock','error',['username'=>$username]), Response::HTTP_NETWORK_AUTHENTICATION_REQUIRED));
         }
         $event = new ProfileEvent($profile, $request);
-        $this->dispatcher->dispatch("znd_usm_user.onProfileLock", $event);
+        $this->dispatcher->dispatch("znd_user.onProfileLock", $event);
         if(!$profile->isLocked()){
             return $this->getViewHandler()->handle($this->view($this->flash->getMessage('lock','error',['username'=>$username]), Response::HTTP_BAD_REQUEST));
         }

@@ -22,7 +22,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  *
  * @package ZND\USM\UserBundle\DependencyInjection
  */
-class EventsUserExtension extends Extension
+class ZNDUserExtension extends Extension
 {
     /**
      * @param array                                                   $configs

@@ -19,7 +19,7 @@ use Symfony\Component\Translation\TranslatorInterface;
  * Class UserFlashInfo
  *
  * @package ZND\USM\UserBundle\FlashInfo
- * @DI\Service("znd_usm_user.profile_flash")
+ * @DI\Service("znd_user.profile_flash")
  */
 class ProfileFlash extends ApiFlash  implements FlashInterface
 {

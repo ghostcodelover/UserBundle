@@ -21,14 +21,14 @@ use Symfony\Component\Form\FormBuilderInterface;
  *
  * @package ZND\USM\UserBundle\Form\Type
  *
- * @DI\Service("znd_usm_user.user_form_profile_type")
+ * @DI\Service("znd_user.user_form_profile_type")
  */
 class ProfileFormType extends ApiFormType
 {
     /**
      * @param string $class The User class name
      * @DI\InjectParams({
-     *  "class"=@DI\Inject("%znd_usm_user.profile_entity_class%")
+     *  "class"=@DI\Inject("%znd_user.profile_entity_class%")
      *})
      */
     public function __construct($class= 'ZND\USM\UserBundle\Entity\Profile')

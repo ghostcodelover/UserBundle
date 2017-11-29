@@ -22,7 +22,7 @@ use JMS\DiExtraBundle\Annotation as DI;
 
 
 /**
- * @DI\Service("znd_usm_user.user_entity_manager")
+ * @DI\Service("znd_user.user_entity_manager")
  */
 class UserEntityManager extends ApiEntityManager  implements UserEntityManagerInterface
 {
@@ -45,10 +45,10 @@ class UserEntityManager extends ApiEntityManager  implements UserEntityManagerIn
      * @param ApiObjectManagerInterface $om
      * @param                                                                                     $class
      * @DI\InjectParams({
-     *     "passwordUpdater" = @DI\Inject("znd_usm_user.user_util_password_updater"),
-     *     "canonicalFieldsUpdater"= @DI\Inject("znd_usm_user.user_util_canonical_fields_updater"),
+     *     "passwordUpdater" = @DI\Inject("znd_user.user_util_password_updater"),
+     *     "canonicalFieldsUpdater"= @DI\Inject("znd_user.user_util_canonical_fields_updater"),
      *     "om"    = @DI\Inject("events_api.api_object_manager"),
-     *     "class" = @DI\Inject("%znd_usm_user.user_entity_class%")
+     *     "class" = @DI\Inject("%znd_user.user_entity_class%")
      * })
      */
     public function __construct(PasswordUpdaterInterface $passwordUpdater,

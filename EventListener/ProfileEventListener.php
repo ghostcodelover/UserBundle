@@ -11,21 +11,18 @@
 namespace ZND\USM\UserBundle\EventListener;
 
 use ZND\SIM\ApiBundle\EventListener\ApiEventListener;
-use ZND\USM\MediaBundle\Entity\ImageInterface;
-use ZND\USM\MediaBundle\EntityManager\ImageEntityManagerInterface;
-use ZND\USM\MediaBundle\Event\ImageEvent;
 use ZND\USM\UserBundle\Event\ProfileEvent;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- *@DI\Service("znd_usm_user.profile_event_listener")
+ *@DI\Service("znd_user.profile_event_listener")
  */
 class ProfileEventListener extends ApiEventListener
 {
     /**
      * @param \ZND\USM\UserBundle\Event\ProfileEvent $event
-     * @DI\Observe("znd_usm_user.onProfileNew")
+     * @DI\Observe("znd_user.onProfileNew")
      */
     public function onProfileNew(ProfileEvent $event){
       $event->getForm()->setData($event->getProfile());
@@ -33,7 +30,7 @@ class ProfileEventListener extends ApiEventListener
 
     /**
      * @param \ZND\USM\UserBundle\Event\ProfileEvent $event
-     * @DI\Observe("znd_usm_user.onProfileEdit")
+     * @DI\Observe("znd_user.onProfileEdit")
      */
     public function onProfileEdit(ProfileEvent $event){
         $event->getForm()->setData($event->getProfile());
@@ -41,7 +38,7 @@ class ProfileEventListener extends ApiEventListener
 
     /**
      * @param \ZND\USM\UserBundle\Event\ProfileEvent $event
-     * @DI\Observe("znd_usm_user.onProfileShow")
+     * @DI\Observe("znd_user.onProfileShow")
      */
     public function onProfileShow(ProfileEvent $event){
        $event->setStatus(Response::HTTP_OK);
@@ -49,7 +46,7 @@ class ProfileEventListener extends ApiEventListener
 
     /**
      * @param \ZND\USM\UserBundle\Event\ProfileEvent $event
-     * @DI\Observe("znd_usm_user.onProfilePatch")
+     * @DI\Observe("znd_user.onProfilePatch")
      */
     public function onProfilePatch(ProfileEvent $event){
         $event->setForm($this->process($event->getForm(), $event->getRequest()));
@@ -58,7 +55,7 @@ class ProfileEventListener extends ApiEventListener
 
     /**
      * @param \ZND\USM\UserBundle\Event\ProfileEvent $event
-     * @DI\Observe("znd_usm_user.onProfilePut")
+     * @DI\Observe("znd_user.onProfilePut")
      */
     public function onProfilePut(ProfileEvent $event){
         $request = $event->getRequest();
@@ -70,7 +67,7 @@ class ProfileEventListener extends ApiEventListener
 
     /**
      * @param \ZND\USM\UserBundle\Event\ProfileEvent $event
-     * @DI\Observe("znd_usm_user.onProfilePutSuccess")
+     * @DI\Observe("znd_user.onProfilePutSuccess")
      */
     public function onProfilePutSuccess(ProfileEvent $event){
          $event->setStatus(Response::HTTP_OK);
@@ -78,7 +75,7 @@ class ProfileEventListener extends ApiEventListener
 
     /**
      * @param \ZND\USM\UserBundle\Event\ProfileEvent $event
-     * @DI\Observe("znd_usm_user.onProfileLock")
+     * @DI\Observe("znd_user.onProfileLock")
      */
     public function onProfileLock(ProfileEvent $event)
     {
@@ -87,7 +84,7 @@ class ProfileEventListener extends ApiEventListener
 
     /**
      * @param \ZND\USM\UserBundle\Event\ProfileEvent $event
-     * @DI\Observe("znd_usm_user.onProfileUnlock")
+     * @DI\Observe("znd_user.onProfileUnlock")
      */
     public function onProfileUnLock(ProfileEvent $event)
     {
@@ -96,7 +93,7 @@ class ProfileEventListener extends ApiEventListener
 
     /**
      * @param \ZND\USM\UserBundle\Event\ProfileEvent $event
-     * @DI\Observe("znd_usm_user.onProfileDelete")
+     * @DI\Observe("znd_user.onProfileDelete")
      */
     public function onProfileDelete(ProfileEvent $event){
 
@@ -104,7 +101,7 @@ class ProfileEventListener extends ApiEventListener
 
     /**
      * @param \ZND\USM\UserBundle\Event\ProfileEvent $event
-     * @DI\Observe("znd_usm_user.onProfileDeleted")
+     * @DI\Observe("znd_user.onProfileDeleted")
      */
     public function onProfileDeleted(ProfileEvent $event){
 

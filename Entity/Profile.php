@@ -15,7 +15,7 @@ use JMS\Serializer\Annotation as JS;
 
 /**
  * @ORM\Entity(repositoryClass="ZND\USM\UserBundle\Repository\ProfileRepository")
- * @ORM\Table(name="znd_usm_user._profile")
+ * @ORM\Table(name="znd_user._profile")
  * @ORM\HasLifecycleCallbacks
  */
 class Profile implements ProfileInterface

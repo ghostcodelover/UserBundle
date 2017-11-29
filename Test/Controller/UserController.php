@@ -30,7 +30,7 @@ class UserController extends ApiController
 {
     /**
      *@var UserEntityManagerInterface
-     * @DI\Inject("znd_usm_user.user_entity_manager")
+     * @DI\Inject("znd_user.user_entity_manager")
      */
     protected $userManager;
 
@@ -39,7 +39,7 @@ class UserController extends ApiController
      */
     private $user;
     /**
-     *@DI\Inject("znd_usm_user.user_flash")
+     *@DI\Inject("znd_user.user_flash")
      * @var FlashInterface $flasInfo;
      */
     private $flasInfo;
@@ -77,7 +77,7 @@ class UserController extends ApiController
         if(!$user instanceof UserInterface){
             return $this->handleView($this->view(["message"=>"bonjour"], Codes::HTTP_INTERNAL_SERVER_ERROR));
         }
-        $this->form = $this->formFactory->createForm("znd_usm_user.user_form_type");
+        $this->form = $this->formFactory->createForm("znd_user.user_form_type");
         $event = new UserEvent($user,$this->form, $request);
         $this->dispatcher->dispatch(Events::EVENTS_USER_NEW, $event);
         return $this->handleView($this->view($this->flasInfo->getMessage('new','success',[]),Codes::HTTP_OK));
@@ -90,7 +90,7 @@ class UserController extends ApiController
      * @return mixed
      */
     public function cpostAction(Request $request)
-    {   $form = $this->formFactory->createForm("znd_usm_user.user_form_type");
+    {   $form = $this->formFactory->createForm("znd_user.user_form_type");
         if(!$form instanceof FormInterface){
             return $this->handleView($this->view($this->flasInfo->getMessage('post','error'), Codes::HTTP_FAILED_DEPENDENCY));
         }
@@ -230,7 +230,7 @@ class UserController extends ApiController
         if (!is_object($this->user) || !$this->user instanceof UserInterface || $this->user->getUsername()!=$username) {
             return $this->handleView($this->view($username, Codes::HTTP_NETWORK_AUTHENTICATION_REQUIRED));
         }
-        $this->form = $this->formFactory->createForm('znd_usm_user.user_password_form');
+        $this->form = $this->formFactory->createForm('znd_user.user_password_form');
         $event = new UserEvent($this->user,$this->form, $request);
         $this->dispatcher->dispatch(Events::EVENTS_USER_CHANGE, $event);
         $code= Codes::HTTP_OK;

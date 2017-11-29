@@ -19,7 +19,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * @author Muekendi emmanuel <mukendiemmanuel@events.cd>
- * @DI\Service("znd_usm_user.user_mailer")
+ * @DI\Service("znd_user.user_mailer")
  */
 class Mailer implements MailerInterface
 {
@@ -80,8 +80,8 @@ class Mailer implements MailerInterface
         $this->mailer = $mailer;
         $this->router = $router;
         $this->templating = $templating;
-        $this->admin= $container->getParameter('znd_usm_user.admin.name');
-        $this->template= $container->getParameter('znd_usm_user.user.templates.confirm_user');
+        $this->admin= $container->getParameter('znd_user.admin.name');
+        $this->template= $container->getParameter('znd_user.user.templates.confirm_user');
     }
 
     /**

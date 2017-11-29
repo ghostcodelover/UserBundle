@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints as CST;
 
 /**
  * @ORM\Entity(repositoryClass="ZND\USM\UserBundle\Repository\UserRepository")
- * @ORM\Table(name="znd_usm_user._user")
+ * @ORM\Table(name="znd_user._user")
  * @ORM\HasLifecycleCallbacks
  */
 class User implements UserInterface

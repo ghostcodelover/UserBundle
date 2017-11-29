@@ -11,7 +11,7 @@
 
 namespace UserBundle\Event;
 use ZND\SIM\ApiBundle\Event\ApiEvent;
-use UserBundle\Entity\LocationInterface;
+use ZND\USM\UserBundle\Entity\LocationInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,7 +38,7 @@ class LocationEvent extends ApiEvent
     }
 
     /**
-     * @return \UserBundle\Entity\LocationInterface
+     * @return \ZND\USM\UserBundle\Entity\LocationInterface
      */
     public function getLocation()
     {
@@ -46,7 +46,7 @@ class LocationEvent extends ApiEvent
     }
 
     /**
-     * @param \UserBundle\Entity\LocationInterface $location
+     * @param \ZND\USM\UserBundle\Entity\LocationInterface $location
      */
     public function setLocation(LocationInterface $location)
     {
